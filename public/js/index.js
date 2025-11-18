@@ -51,11 +51,20 @@ document.getElementById("create-form").addEventListener("submit", function(e) {
         return
     }
 
+    const usuarioExistente = localStorage.getItem(email);
+
+    if(usuarioExistente) {
+        alert("Já existe uma conta com esse e-mail.");
+        return
+    }
+
     saveAccount({
         login: email,
         password: password,
         transactions: []
     });
+
+    e.target.reset();
 
     myModal.hide();
 
